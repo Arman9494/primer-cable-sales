@@ -8,245 +8,231 @@
 <!-- Почта для заявок указана в двух местах: кнопка в шапке и раздел «Связь». -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;600&family=Fira+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Палитра: холодная сталь + цветовая маркировка волокон (IEC 60304). */
   :root {
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #16191d;
-    --muted: #5f666e;
-    --line: #cfd2d4;
-    --line-strong: #16191d;
-    --accent: #d4561c;
-    --head-bg: #1b1f24;
-    --head-ink: #eef0f2;
-    --head-muted: #8d959e;
-    --head-line: #333a42;
-    --sans: "IBM Plex Sans", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --paper:  #e8ecef;
+    --panel:  #f7f9fa;
+    --ink:    #1e2a33;
+    --steel:  #5c6a75;
+    --rule:   #c3cbd2;
+    --signal: #1f5fbf;
+
+    --f1: #1f5fbf; --f2: #f07d1a; --f3: #2e9b4a; --f4: #8b5a2b;
+    --f5: #8a949c; --f6: #ffffff; --f7: #d62d2d; --f8: #1a1a1a;
+    --f9: #f2c511; --f10: #7b3fa6; --f11: #f29bb8; --f12: #2bb5c8;
+
+    --display: "Fira Sans Extra Condensed", "Arial Narrow", system-ui, sans-serif;
+    --text: "Fira Sans", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #121417;
-      --panel: #181b1f;
-      --ink: #e6e8ea;
-      --muted: #949ba3;
-      --line: #2c3238;
-      --line-strong: #e6e8ea;
-      --accent: #f07a3e;
-      --head-bg: #0c0e10;
-      --head-line: #262c32;
+      --paper: #182128;
+      --panel: #1f2a33;
+      --ink:   #e4e9ed;
+      --steel: #98a5b0;
+      --rule:  #31404b;
+      --signal:#6fa3ec;
+      --f8: #3a3f44;
     }
   }
+
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
-    font: 400 17px/1.6 var(--sans);
+    font: 400 17px/1.55 var(--text);
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-  @media (min-width: 640px) { .wrap { padding: 0 32px; } }
-  .mono { font-family: var(--mono); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 40px; } }
 
-  /* ── Шапка ─────────────────────────────── */
-  header {
-    background: var(--head-bg);
-    color: var(--head-ink);
-    background-image:
-      linear-gradient(var(--head-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--head-line) 1px, transparent 1px);
-    background-size: 32px 32px;
-    background-position: -1px -1px;
-  }
-  .bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .bar {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--head-line);
-    font: 500 12px/1.4 var(--mono);
-    letter-spacing: .06em; text-transform: uppercase;
-    color: var(--head-muted);
-    background: var(--head-bg);
-  }
-  .bar b { color: var(--head-ink); font-weight: 500; }
-  .hero {
-    display: grid; gap: 28px;
-    padding: 44px 0 52px;
-  }
-  @media (min-width: 760px) {
-    .hero { grid-template-columns: 1fr 260px; align-items: center; padding: 72px 0 80px; }
-  }
-  .hero-text { background: var(--head-bg); padding: 4px 0; }
-  .tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
-    color: var(--head-muted);
-  }
-  .tag::before { content: ""; width: 24px; height: 2px; background: var(--accent); }
+  /* Шапка */
+  .masthead { padding: 22px 0 0; }
+  .maker { margin: 0; font-size: 15px; color: var(--steel); }
+  .maker strong { color: var(--ink); font-weight: 500; }
+
+  .hero { padding: 56px 0 40px; }
+  @media (min-width: 720px) { .hero { padding: 96px 0 56px; } }
   h1 {
-    margin: 18px 0 14px;
-    font-weight: 700;
-    font-size: clamp(36px, 10vw, 64px);
-    line-height: 1.02;
-    letter-spacing: -.02em;
+    margin: 0;
+    font: 600 clamp(64px, 19vw, 168px)/.86 var(--display);
+    letter-spacing: -.01em;
   }
-  .lead { margin: 0 0 30px; color: #c3c8ce; max-width: 32em; }
+  .lead { margin: 22px 0 28px; max-width: 34ch; font-size: 19px; color: var(--steel); }
   .btn {
-    display: inline-flex; align-items: center; gap: 14px;
-    min-height: 52px; padding: 0 22px;
-    background: var(--accent); color: #fff;
-    font: 600 16px/1 var(--sans);
+    display: inline-flex; align-items: center;
+    min-height: 52px; padding: 0 26px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 4px;
+    font: 500 17px/1 var(--text);
     text-decoration: none;
-    border: 0; border-radius: 0;
   }
-  .btn::after { content: "→"; font-family: var(--mono); }
-  .btn:hover { filter: brightness(1.08); }
-  .btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .btn:hover { background: var(--signal); color: #fff; }
+  a:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
 
-  .drawing { display: none; color: var(--head-muted); background: var(--head-bg); }
-  @media (min-width: 760px) { .drawing { display: block; } }
-  .drawing svg { display: block; width: 100%; height: auto; }
-  .drawing figcaption {
-    margin-top: 10px; text-align: center;
-    font: 500 11px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  /* Главный элемент: пучок волокон в цветовой маркировке */
+  .fibres { display: grid; gap: 3px; padding: 0 0 6px; }
+  .fibres i {
+    display: block; height: 5px;
+    transform-origin: left center;
+    animation: lay 900ms cubic-bezier(.2,.7,.2,1) both;
   }
+  .fibres i:nth-child(1)  { background: var(--f1);  animation-delay:   0ms; }
+  .fibres i:nth-child(2)  { background: var(--f2);  animation-delay:  40ms; }
+  .fibres i:nth-child(3)  { background: var(--f3);  animation-delay:  80ms; }
+  .fibres i:nth-child(4)  { background: var(--f4);  animation-delay: 120ms; }
+  .fibres i:nth-child(5)  { background: var(--f5);  animation-delay: 160ms; }
+  .fibres i:nth-child(6)  { background: var(--f6);  animation-delay: 200ms; }
+  .fibres i:nth-child(7)  { background: var(--f7);  animation-delay: 240ms; }
+  .fibres i:nth-child(8)  { background: var(--f8);  animation-delay: 280ms; }
+  .fibres i:nth-child(9)  { background: var(--f9);  animation-delay: 320ms; }
+  .fibres i:nth-child(10) { background: var(--f10); animation-delay: 360ms; }
+  .fibres i:nth-child(11) { background: var(--f11); animation-delay: 400ms; }
+  .fibres i:nth-child(12) { background: var(--f12); animation-delay: 440ms; }
+  @keyframes lay { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .fibres i { animation: none; } }
 
-  /* ── Разделы ───────────────────────────── */
-  main { padding: 8px 0 0; }
-  section {
-    display: grid; gap: 14px;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--line);
+  /* Разделы */
+  .block {
+    display: grid; gap: 18px;
+    padding: 44px 0;
+    border-top: 1px solid var(--rule);
   }
-  @media (min-width: 760px) {
-    section { grid-template-columns: 220px 1fr; gap: 32px; padding: 52px 0; }
+  .block:first-child { border-top: 0; }
+  @media (min-width: 720px) {
+    .block { grid-template-columns: 260px 1fr; gap: 40px; padding: 64px 0; }
   }
-  .sec-head { display: flex; align-items: baseline; gap: 14px; }
-  @media (min-width: 760px) { .sec-head { flex-direction: column; gap: 8px; } }
-  .num { font: 500 13px/1 var(--mono); color: var(--accent); letter-spacing: .06em; }
-  h2 { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.25; }
+  h2 { margin: 0; font: 600 30px/1.1 var(--display); }
 
-  /* Направления — как спецификация */
-  .spec { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--line-strong); }
-  .spec li {
-    display: grid; grid-template-columns: 52px 1fr; align-items: center;
-    min-height: 64px;
-    border-bottom: 1px solid var(--line);
-    font-size: 20px; font-weight: 600;
+  /* Продукция: сечения кабеля */
+  .range { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  @media (min-width: 720px) { .range { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+  .range li {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font: 600 23px/1.15 var(--display);
   }
-  .spec li:last-child, .steps li:last-child { border-bottom: 0; }
-  .spec .idx { font: 500 13px/1 var(--mono); color: var(--muted); }
+  @media (min-width: 720px) {
+    .range li { flex-direction: column; align-items: flex-start; gap: 18px; padding: 20px; min-height: 180px; justify-content: space-between; }
+  }
+  .range svg { width: 56px; height: 56px; flex: none; }
+  @media (min-width: 720px) { .range svg { width: 72px; height: 72px; } }
+  .jacket { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+  .sheath { fill: none; stroke: var(--steel); stroke-width: 1.2; }
 
-  /* Шаги */
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--line-strong); }
-  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-  .steps li {
-    padding: 18px 0 20px;
-    border-bottom: 1px solid var(--line);
+  /* Шаги: последовательность, номер окрашен как волокна 1–3 */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+  @media (min-width: 720px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+  .steps li { display: grid; grid-template-columns: 44px 1fr; gap: 0 14px; align-items: start; }
+  @media (min-width: 720px) { .steps li { grid-template-columns: 1fr; gap: 14px; } }
+  .n {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center;
+    font: 600 22px/1 var(--display); color: #fff;
   }
-  @media (min-width: 760px) {
-    .steps li { padding: 20px 20px 24px 0; border-bottom: 0; }
-    .steps li + li { padding-left: 20px; border-left: 1px solid var(--line); }
-  }
-  .step-n { display: block; font: 500 12px/1 var(--mono); letter-spacing: .08em; color: var(--accent); margin-bottom: 10px; }
-  .steps b { display: block; font-size: 18px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
-  .steps span.t { color: var(--muted); font-size: 16px; }
+  .steps li:nth-child(1) .n { background: var(--f1); }
+  .steps li:nth-child(2) .n { background: var(--f2); }
+  .steps li:nth-child(3) .n { background: var(--f3); }
+  .steps b { display: block; font-weight: 500; font-size: 18px; line-height: 1.3; margin: 0 0 4px; }
+  .steps p { margin: 0; color: var(--steel); }
+  @media (max-width: 719px) { .steps b { padding-top: 10px; } }
 
   /* Связь */
-  .contact {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--accent);
-    padding: 22px 20px;
-  }
-  .contact .lbl { margin: 0 0 8px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .contact p { margin: 0 0 6px; color: var(--steel); }
   .mail {
-    font: 500 clamp(16px, 4.6vw, 22px)/1.3 var(--mono);
-    color: var(--ink); text-decoration: none;
+    font: 600 clamp(26px, 7.4vw, 44px)/1.15 var(--display);
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--signal);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
     overflow-wrap: anywhere;
-    border-bottom: 2px solid var(--accent);
   }
-  .mail:hover { color: var(--accent); }
-  .mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .mail:hover { color: var(--signal); }
 
-  footer {
-    padding: 28px 0 36px;
-    font: 400 12px/1.5 var(--mono); letter-spacing: .04em;
-    color: var(--muted);
-  }
+  footer { padding: 28px 0 40px; border-top: 1px solid var(--rule); color: var(--steel); font-size: 14px; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="bar">
-    <div class="wrap">
-      <span><b>«Пример-Кабель»</b></span>
-      <span>завод оптического кабеля</span>
-    </div>
+  <div class="wrap masthead">
+    <p class="maker"><strong>«Пример-Кабель»</strong>, завод оптического кабеля</p>
   </div>
-  <div class="wrap">
-    <div class="hero">
-      <div class="hero-text">
-        <span class="tag">Подразделение</span>
-        <h1>Отдел продаж</h1>
-        <p class="lead">Кабельная продукция завода. Заявки принимаем по почте.</p>
-        <a class="btn" href="mailto:zhumashev.9494@gmail.com">Написать нам</a>
-      </div>
-      <figure class="drawing" aria-hidden="true" style="margin:0">
-        <svg viewBox="0 0 260 260" fill="none" stroke="currentColor">
-          <circle cx="130" cy="130" r="112" stroke-width="1.5"/>
-          <circle cx="130" cy="130" r="96" stroke-width="1"/>
-          <circle cx="130" cy="130" r="72" stroke-width="1" stroke-dasharray="3 4"/>
-          <circle cx="130" cy="130" r="14" stroke-width="1.5"/>
-          <g stroke-width="1.5">
-            <circle cx="130" cy="78" r="12"/><circle cx="175" cy="104" r="12"/>
-            <circle cx="175" cy="156" r="12"/><circle cx="130" cy="182" r="12"/>
-            <circle cx="85" cy="156" r="12"/><circle cx="85" cy="104" r="12"/>
-          </g>
-          <circle cx="130" cy="78" r="3" fill="#d4561c" stroke="none"/>
-          <path d="M8 130h20M232 130h20M130 8v20M130 232v20" stroke-width="1"/>
-          <path d="M18 250 L242 250" stroke-width="1"/>
-          <path d="M18 245v10M242 245v10" stroke-width="1"/>
-        </svg>
-        <figcaption>Сечение · схема</figcaption>
-      </figure>
-    </div>
+  <div class="wrap hero">
+    <h1>Отдел продаж</h1>
+    <p class="lead">Кабельная продукция завода. Заявки принимаем по почте.</p>
+    <a class="btn" href="mailto:zhumashev.9494@gmail.com">Написать нам</a>
   </div>
+  <div class="fibres" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </header>
 
 <main class="wrap">
 
-  <section>
-    <div class="sec-head"><span class="num">01</span><h2>Чем занимаемся</h2></div>
-    <ul class="spec">
-      <li><span class="idx">1.1</span>Кабель</li>
-      <li><span class="idx">1.2</span>Кабель оптический</li>
-      <li><span class="idx">1.3</span>Кабель силовой</li>
+  <section class="block">
+    <h2>Чем занимаемся</h2>
+    <ul class="range">
+      <li>
+        <svg viewBox="0 0 72 72" aria-hidden="true">
+          <circle class="jacket" cx="36" cy="36" r="33"/>
+          <circle class="sheath" cx="36" cy="36" r="24"/>
+          <circle cx="36" cy="36" r="13" fill="#b87333"/>
+        </svg>
+        Кабель
+      </li>
+      <li>
+        <svg viewBox="0 0 72 72" aria-hidden="true">
+          <circle class="jacket" cx="36" cy="36" r="33"/>
+          <circle cx="36" cy="36" r="5" fill="var(--steel)"/>
+          <circle cx="36" cy="18" r="7" fill="var(--f1)"/>
+          <circle cx="51.6" cy="27" r="7" fill="var(--f2)"/>
+          <circle cx="51.6" cy="45" r="7" fill="var(--f3)"/>
+          <circle cx="36" cy="54" r="7" fill="var(--f4)"/>
+          <circle cx="20.4" cy="45" r="7" fill="var(--f5)"/>
+          <circle cx="20.4" cy="27" r="7" fill="var(--panel)" stroke="var(--steel)" stroke-width="1.2"/>
+        </svg>
+        Кабель оптический
+      </li>
+      <li>
+        <svg viewBox="0 0 72 72" aria-hidden="true">
+          <circle class="jacket" cx="36" cy="36" r="33"/>
+          <circle cx="36" cy="23" r="10.5" fill="#7a4a24"/>
+          <circle cx="24.7" cy="42.5" r="10.5" fill="#2a2f33"/>
+          <circle cx="47.3" cy="42.5" r="10.5" fill="#8a949c"/>
+        </svg>
+        Кабель силовой
+      </li>
     </ul>
   </section>
 
-  <section>
-    <div class="sec-head"><span class="num">02</span><h2>Как подать заявку</h2></div>
+  <section class="block">
+    <h2>Как подать заявку</h2>
     <ol class="steps">
-      <li><span class="step-n">Шаг 1</span><b>Напишите на почту отдела</b><span class="t">Адрес указан ниже.</span></li>
-      <li><span class="step-n">Шаг 2</span><b>Укажите, что нужно</b><span class="t">Марку кабеля и объём.</span></li>
-      <li><span class="step-n">Шаг 3</span><b>Получите ответ от отдела</b><span class="t">Мы ответим на ваше письмо.</span></li>
+      <li><span class="n">1</span><div><b>Напишите на почту отдела</b><p>Адрес указан ниже.</p></div></li>
+      <li><span class="n">2</span><div><b>Укажите, что нужно</b><p>Марку кабеля и объём.</p></div></li>
+      <li><span class="n">3</span><div><b>Получите ответ от отдела</b><p>Мы ответим на ваше письмо.</p></div></li>
     </ol>
   </section>
 
-  <section>
-    <div class="sec-head"><span class="num">03</span><h2>Связь</h2></div>
-    <div class="contact">
-      <p class="lbl">Почта отдела</p>
+  <section class="block contact">
+    <h2>Связь</h2>
+    <div>
+      <p>Почта отдела</p>
       <a class="mail" href="mailto:zhumashev.9494@gmail.com">zhumashev.9494@gmail.com</a>
     </div>
   </section>
 
 </main>
 
-<footer class="wrap">© «Пример-Кабель» · Отдел продаж</footer>
+<footer>
+  <div class="wrap">© «Пример-Кабель», отдел продаж</div>
+</footer>
 
 </body>
 </html>
